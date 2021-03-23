@@ -10,7 +10,7 @@
     "build": "parcel build src/index.html --out-dir dist/parcel-build --public-url ./",
     "dev": "concurrently -k \"yarn start\" \"yarn:electron\"",
     "electron": "wait-on tcp:1234 && tsc && copyfiles -f \"electron/assets/**/*\" \"dist/assets\" && electron .",
-    "package": "yarn build && tsc && electron-builder --",
+    "package": "yarn build && tsc && electron-builder",
     "release": "yarn build && electron-builder --publish=always",
     "lint": "eslint --ext .ts ."
   },
@@ -33,7 +33,6 @@
       "category": "public.app-category.productivity"
     },
     "win": {
-      "artifactName": "out",
       "target": [
         {
           "target": "nsis",
