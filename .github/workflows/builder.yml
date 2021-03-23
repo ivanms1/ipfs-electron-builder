@@ -2,6 +2,9 @@ name: Build Executables
 
 on: [push]
 
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 jobs:
   linux:
     runs-on: ubuntu-latest
@@ -23,7 +26,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: linux-exec
-          path: ext/
+          path: out/
   win:
     runs-on: windows-latest
 
@@ -46,7 +49,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: win-exec
-          path: ext/
+          path: out/
 
   # mac:
   #   runs-on: macos-latest

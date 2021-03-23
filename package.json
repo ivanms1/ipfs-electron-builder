@@ -27,7 +27,7 @@
       "package.json"
     ],
     "directories": {
-      "output": "./ext"
+      "output": "./out"
     },
     "appId": "conun.app",
     "mac": {
