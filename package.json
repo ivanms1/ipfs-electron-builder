@@ -3,7 +3,7 @@
   "productName": "electron-react-typescript-template",
   "version": "1.0.0",
   "description": "Electron React boilerplate",
-  "homepage": "https://www.ivansaldano.com/",
+  "homepage": "./",
   "main": "dist/index.js",
   "scripts": {
     "start": "parcel src/index.html --out-dir parcel-dist",
@@ -12,7 +12,6 @@
     "electron": "wait-on tcp:1234 && tsc && copyfiles -f \"electron/assets/**/*\" \"dist/assets\" && electron .",
     "package": "yarn build && tsc && electron-builder",
     "release": "yarn build && electron-builder --publish=always",
-    "postinstall": "electron-builder install-app-deps",
     "lint": "eslint --ext .ts ."
   },
   "keywords": [],
@@ -34,6 +33,7 @@
       "category": "public.app-category.productivity"
     },
     "win": {
+      "artifactName": "out",
       "target": [
         {
           "target": "nsis",
