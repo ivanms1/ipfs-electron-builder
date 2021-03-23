@@ -34,7 +34,6 @@
       "category": "public.app-category.productivity"
     },
     "win": {
-      "artifactName": "out",
       "target": [
         {
           "target": "nsis",
