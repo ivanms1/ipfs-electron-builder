@@ -12,6 +12,7 @@
     "electron": "wait-on tcp:1234 && tsc && copyfiles -f \"electron/assets/**/*\" \"dist/assets\" && electron .",
     "package": "yarn build && tsc && electron-builder",
     "release": "yarn build && electron-builder --publish=always",
+    "postinstall": "electron-builder install-app-deps",
     "lint": "eslint --ext .ts ."
   },
   "keywords": [],

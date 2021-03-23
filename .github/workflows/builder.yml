@@ -1,70 +1,31 @@
-name: Build Executables
+name: Build/release
 
-on: [push]
+on: push
 
 jobs:
-  # linux:
-  #   runs-on: ubuntu-latest
-
-  #   strategy:
-  #     matrix:
-  #       node-version: [15.x]
-
-  #   steps:
-  #     - uses: actions/checkout@v2
-  #     - name: Setup node
-  #       uses: actions/setup-node@v1
-  #       with:
-  #         node-version: 15.x
-  #     - run: |
-  #         yarn install
-  #         yarn package
-  #     - name: Upload Executable
-  #       uses: actions/upload-artifact@v2
-  #       with:
-  #         name: linux-exec
-  #         path: out/
-  win:
-    runs-on: windows-latest
+  release:
+    runs-on: ${{ matrix.os }}
 
     strategy:
       matrix:
-        node-version: [15.x]
+        os: [macos-latest, ubuntu-latest, windows-latest]
 
     steps:
-      - uses: actions/checkout@v2
-      - name: Setup node
+      - name: Check out Git repository
+        uses: actions/checkout@v1
+
+      - name: Install Node.js, NPM and Yarn
         uses: actions/setup-node@v1
         with:
-          node-version: 15.x
-      - name: Install deps and package
-        run: |
-          yarn install
-          yarn package
-      - name: Upload Executable
-        uses: actions/upload-artifact@v2
+          node-version: 10
+
+      - name: Build/release Electron app
+        uses: samuelmeuli/action-electron-builder@v1
         with:
-          name: win-exec
-          path: out/
+          # GitHub token, automatically provided to the action
+          # (No need to define this secret in the repo settings)
+          github_token: ${{ secrets.github_token }}
 
-  # mac:
-  #   runs-on: macos-latest
-
-  #   strategy:
-  #     matrix:
-  #       node-version: [15.x]
-
-  #   steps:
-  #     - uses: actions/checkout@v2
-  #     - name: Setup node
-  #       uses: actions/setup-node@v1
-  #       with:
-  #         node-version: 15.x
-  #     - run: |
-  #         yarn install
-  #         yarn package
-  #     - name: Upload Executable
-  #       uses: actions/upload-artifact@v2
-  #       with:
-  #         name: mac-exec
-  #         path: out/
+          # If the commit is tagged with a version (e.g. "v1.0.0"),
+          # release the app after building
+          release: ${{ startsWith(github.ref, 'refs/tags/v') }}
