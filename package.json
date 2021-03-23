@@ -36,18 +36,20 @@
     "win": {
       "target": [
         {
-          "target": "nsis",
-          "oneClick": false,
-          "allowElevation": true,
-          "allowToChangeInstallationDirectory": false,
-          "createDesktopShortcut": true,
-          "deleteAppDataOnUninstall": true
+          "target": "nsis"
         }
       ]
     },
     "linux": {
       "category": "Utility",
       "target": "deb"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowElevation": true,
+      "allowToChangeInstallationDirectory": false,
+      "createDesktopShortcut": true,
+      "deleteAppDataOnUninstall": true
     }
   },
   "devDependencies": {
