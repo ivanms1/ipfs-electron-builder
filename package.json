@@ -9,8 +9,9 @@
     "start": "parcel src/index.html --out-dir parcel-dist",
     "build": "parcel build src/index.html --out-dir dist/parcel-build --public-url ./",
     "dev": "concurrently -k \"yarn start\" \"yarn:electron\"",
-    "electron": "wait-on tcp:1234 && tsc && copyfiles -f \"electron/assets/**/*\" \"dist/assets\" && electron .",
-    "package": "yarn build && tsc && electron-builder",
+    "copy-assets": "copyfiles -f \"electron/assets/**/*\" \"dist/assets\"",
+    "electron": "wait-on tcp:1234 && tsc && yarn copy-assets && electron .",
+    "package": "yarn build && tsc && yarn copy-assets && electron-builder",
     "release": "yarn build && electron-builder --publish=always",
     "lint": "eslint --ext .ts ."
   },
