@@ -23,7 +23,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: linux-exec
-          path: out/
+          path: ext/
   win:
     runs-on: windows-latest
 
@@ -40,12 +40,13 @@ jobs:
       - name: Install deps and package
         run: |
           yarn install
+          ls
           yarn package
       - name: Upload Executable
         uses: actions/upload-artifact@v2
         with:
           name: win-exec
-          path: out/
+          path: ext/
 
   # mac:
   #   runs-on: macos-latest
