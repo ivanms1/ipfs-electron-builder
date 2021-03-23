@@ -2,8 +2,8 @@ name: Build Executables
 
 on: [push]
 
-with:
-  github_token: ${{ secrets.github_token }}
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
   linux:
