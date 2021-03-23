@@ -33,14 +33,15 @@
       "category": "public.app-category.productivity"
     },
     "win": {
-      "artifactName": "out"
-    },
-    "nsis": {
-      "oneClick": false,
-      "allowElevation": true,
-      "allowToChangeInstallationDirectory": false,
-      "createDesktopShortcut": true,
-      "deleteAppDataOnUninstall": true
+      "artifactName": "out",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
     },
     "linux": {
       "category": "Utility",
