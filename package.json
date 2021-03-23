@@ -37,9 +37,11 @@
       "target": [
         {
           "target": "nsis",
-          "arch": [
-            "x64"
-          ]
+          "oneClick": false,
+          "allowElevation": true,
+          "allowToChangeInstallationDirectory": false,
+          "createDesktopShortcut": true,
+          "deleteAppDataOnUninstall": true
         }
       ]
     },
