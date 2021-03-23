@@ -45,7 +45,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: win-exec
-          path: out/out
+          path: out/
 
   # mac:
   #   runs-on: macos-latest
