@@ -33,7 +33,10 @@
       "category": "public.app-category.productivity"
     },
     "win": {
-      "artifactName": "electron-react-typescript-template"
+      "artifactName": "electron-react-typescript-template",
+      "arch": [
+        "x64"
+      ]
     },
     "nsis": {
       "oneClick": false,
