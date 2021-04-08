@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import Welcome from "./Welcome";
 import Introduction from "./Introduction";
@@ -46,9 +46,16 @@ export interface StepProps {
 
 function IntroSteps() {
   const { isAlreadyUser } = useAppContext();
+
   const [currentStep, setCurrentStep] = useState(
     isAlreadyUser ? steps.existingWallet.id : steps.welcome.id
   );
+
+  useEffect(() => {
+    if (isAlreadyUser) {
+      setCurrentStep(steps.existingWallet.id);
+    }
+  }, [isAlreadyUser]);
 
   const Component = steps[currentStep].component;
 
