@@ -93,8 +93,6 @@ dist
 parcel-build/
 parcel-dist/
 
-env-variables.json
-
 #db
 /conun-db
 
