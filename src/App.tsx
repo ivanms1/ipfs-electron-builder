@@ -1,15 +1,34 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import "./App.global.css";
+import { Route, Switch } from "react-router-dom";
 
-import Home from "./pages/Home";
+import IntroRoute from "./Routes/IntroRoute";
+import PrivateRoute from "./Routes/PrivateRoute";
+import HomeWrapper from "./pages/Home/HomeWrapper";
+import Transfer from "./pages/Transfer";
+import IntroSteps from "./pages/IntroSteps";
+import Success from "./pages/Success";
 
-export default function App() {
+import { AppProvider } from "./components/AppContext";
+
+function App() {
   return (
-    <Router>
+    <AppProvider>
       <Switch>
-        <Route path="/" component={Home} />
+        <IntroRoute exact path="/">
+          <IntroSteps />
+        </IntroRoute>
+        <Route path="/success">
+          <Success />
+        </Route>
+        <PrivateRoute path="/home">
+          <HomeWrapper />
+        </PrivateRoute>
+        <PrivateRoute path="/transfer">
+          <Transfer />
+        </PrivateRoute>
       </Switch>
-    </Router>
+    </AppProvider>
   );
 }
+
+export default App;

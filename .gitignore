@@ -86,9 +86,17 @@ typings/
 .webpack/
 
 # Electron-Forge
-out/
+out
 
-dist/
+dist
 
 parcel-build/
 parcel-dist/
+
+env-variables.json
+
+const/
+
+#db
+/conun-db
+
