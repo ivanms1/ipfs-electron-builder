@@ -85,7 +85,7 @@ function PendingTransaction({ transferData, txId }: PendingTransactionProps) {
   useEffect(() => {
     setTimeout(() => {
       setIsTransactionSuccessful(true);
-    }, 12000);
+    }, 30000);
   }, []);
 
   useEffect(() => {
