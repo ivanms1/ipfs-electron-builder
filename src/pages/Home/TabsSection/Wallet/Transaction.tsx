@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { toast } from "react-toastify";
 import classNames from "classnames";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 
@@ -9,6 +10,7 @@ import Button from "../../../../components/Button";
 
 import useCurrentToken from "../../../../hooks/useCurrentToken";
 import useTransferFee from "../../../../hooks/useTransferFee";
+import useCheckTransferWindow from "../../../../hooks/useCheckTransferWindow";
 
 import styles from "./Transaction.module.scss";
 
@@ -32,6 +34,9 @@ type FormData = {
 
 function Transaction() {
   const token = useCurrentToken();
+
+  const { checkTransferWindow } = useCheckTransferWindow();
+
   const {
     register,
     handleSubmit,
@@ -75,6 +80,19 @@ function Transaction() {
   }, []);
 
   const onSubmit: SubmitHandler<FormData> = async (values) => {
+    const isAlreadyOpen = await checkTransferWindow();
+
+    if (isAlreadyOpen) {
+      toast.warning(
+        "Only one transaction window can be open at the same time",
+        {
+          position: "bottom-center",
+          autoClose: 2000,
+          hideProgressBar: true,
+        }
+      );
+    }
+
     const fee = values.isAdvanced
       ? (values.gasPrice * values.gasLimit) / 1000000000
       : data?.payload?.[values.fee]?.total;
