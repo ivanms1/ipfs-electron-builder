@@ -155,7 +155,10 @@ export async function checkTransaction(txHash: string) {
   try {
     const transaction = await web3.eth.getTransaction(txHash);
 
-    if (transaction?.transactionIndex && transaction?.blockHash) {
+    if (
+      (transaction?.transactionIndex || transaction?.transactionIndex === 0) &&
+      transaction?.blockHash
+    ) {
       const receipt = await web3.eth.getTransactionReceipt(txHash);
 
       return {

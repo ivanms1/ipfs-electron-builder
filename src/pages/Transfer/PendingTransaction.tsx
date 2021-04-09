@@ -80,14 +80,6 @@ function PendingTransaction({ transferData, txId }: PendingTransactionProps) {
     }
   }, [data]);
 
-  console.log(`data`, data);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setIsTransactionSuccessful(true);
-    }, 30000);
-  }, []);
-
   useEffect(() => {
     if (transferData?.token !== "conx" && !isTransactionSuccessful) {
       animateRocket(animation);
