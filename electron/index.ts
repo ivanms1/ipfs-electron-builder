@@ -180,6 +180,7 @@ ipcMain.handle("open-transfer-window", async (_, args) => {
       await transferWindow.loadURL(
         `file://${path.join(__dirname, "../parcel-build/index.html#transfer")}`
       );
+      transferWindow.webContents.openDevTools();
     }
 
     if (transferWindow) {
