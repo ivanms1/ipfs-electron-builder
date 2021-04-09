@@ -152,18 +152,26 @@ export async function validateQrCode({
 }
 
 export async function checkTransaction(txHash: string) {
-  const transaction = await web3.eth.getTransaction(txHash);
+  try {
+    const transaction = await web3.eth.getTransaction(txHash);
 
-  if (transaction?.transactionIndex && transaction?.blockHash) {
-    const receipt = await web3.eth.getTransactionReceipt(txHash);
+    if (transaction?.transactionIndex && transaction?.blockHash) {
+      const receipt = await web3.eth.getTransactionReceipt(txHash);
 
-    return {
-      success: true,
-      data: receipt,
-    };
-  } else {
+      return {
+        success: true,
+        data: receipt,
+      };
+    } else {
+      return {
+        success: false,
+        transaction: transaction,
+      };
+    }
+  } catch (error) {
     return {
       success: false,
+      error: String(error),
     };
   }
 }
